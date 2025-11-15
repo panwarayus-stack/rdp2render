@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: rdp-tailscale
+    env: docker
+    dockerfilePath: Dockerfile
+    branch: main
+    plan: free
+    region: oregon
+    envVars:
+      - key: RDP_USER
+        value: rdpuser
+      - key: RDP_PASSWORD
+        # set a non-empty default if you like; it's recommended to override in Render dashboard as a secret
+        value: "ChangeMe123!"
+      - key: TAILSCALE_AUTH_KEY
+        # DON'T put your real key here; set this as a secret in the Render dashboard after deploying
+        value: ""
+    healthCheckPath: /
+    instanceCount: 1
